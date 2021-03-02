@@ -150,27 +150,7 @@
 			if($firstName != "" && $lastName != "" && $gender != "" && $email != "" && $userName != "" && $password != "" && $rEmail != "")
 			{
 		
-
-				/*$File = "shatin.txt";
-				$Handle = fopen($File, 'a');				
-			
-				fwrite($Handle, $firstName); 
-				fwrite($Handle, ",");
-				fwrite($Handle, $lastName);
-				fwrite($Handle, ",");
-				fwrite($Handle, $gender);
-				fwrite($Handle, ",");
-				fwrite($Handle, $email);
-				fwrite($Handle, ",");
-				fwrite($Handle, $userName);
-				fwrite($Handle, ",");
-				fwrite($Handle, $password);
-				fwrite($Handle, ",");
-				fwrite($Handle, $rEmail);
-				fwrite($Handle, "\n");
-				
-				fclose($Handle); */
-				 $arr1 = array('firstName' => $firstName, 'lastName' => $lastName, 'gender' => $gender, 'email' => $email, 'password' => $password, 'rEmail' => $rEmail);
+				$arr1 = array('firstName' => $firstName, 'lastName' => $lastName, 'gender' => $gender, 'email' => $email, 'userName' => $userName, 'password' =>  $password, 'rEmail' => $rEmail);
 	    		$json_encoded_text =  json_encode($arr1); 
 
 	    		$file1 = fopen("shatin.txt", "w");
@@ -179,19 +159,6 @@
 			    fclose($file1);
 
 			}
-
-			/*$file = "shatin.txt";
-			$open = fopen($file, 'r');
-			$read = fread($open, filesize($file));
-			$line= (explode("\n", $read));
-			echo $line[0];
-			echo "<br>";
-			echo $line[1];
-			echo "<br>";
-			echo $line[2];
-			echo "<br>";
-
-			fclose($open);*/
 
 			$file2 = fopen("shatin.txt", "r");
 	        $read = fread($file2, filesize("shatin.txt"));
@@ -206,6 +173,8 @@
 	        echo $json_decoded_text['gender'];
 	        echo "<br>";
 	        echo $json_decoded_text['email'];
+	        echo "<br>";
+	        echo $json_decoded_text['userName'];
 	        echo "<br>";
 	        echo $json_decoded_text['password'];
 	        echo "<br>";

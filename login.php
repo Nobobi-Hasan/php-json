@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,28 +14,78 @@
 	    <h1>Login</h1>
 
 	    <?php
-	      $userNameErr = $passwordErr = "" ;
+			$userNameErr = $passwordErr = "" ;
 
-	      $userName = "";
-	      $password = "";
-	      $rEmail = "";
+			$userName = "";
+			$password = "";
+			$msg = "";
+			$flag = 0;
 
-	      if($_SERVER["REQUEST_METHOD"] == "POST") {
+			$filepath = "shatin.txt";
+			$file = fopen($filepath,'r') 
+			or die("unable to open file");
 
-	        if(empty($_POST['uname'])) {
-	          $userNameErr = "Please fill up the username properly";
-	          }
-	        else {
-	          $userName = $_POST['uname'];
+			if($_SERVER["REQUEST_METHOD"] == "POST") 
+			{
+
+				if(empty($_POST['uname'])) {
+				  $userNameErr = "Please fill up the username properly";
+				  }
+				else {
+				  $userName = $_POST['uname'];
+				}
+
+				if(empty($_POST['password'])) {
+				  $passwordErr = "Please fill up the password properly";
+				}
+				else {
+				  $password = $_POST['password'];
+				}
+
+				while($line = fgets($file)) 
+				{
+
+	                //list($firstName,$lastName,$gender,$email,$userNameV,$passwordV,$recoveryEmail) = explode( ",", $line );
+	                $json_decoded_text = json_decode($line, true);
+
+	                $userNameV= $json_decoded_text['userName'];
+	                $passwordV= $json_decoded_text['password'];
+	        
+	                if($userNameV == $userName && $passwordV == $password)
+	                {
+	                    $flag++;
+	                    break;
+	                }       
+            	}
+
+            	if ($flag>0)
+	            {
+	                $msg = "Logged in";
+	                echo $msg;
+	                echo "<br>";
+	        
+	                $_SESSION['userNameV'] = $userName;
+	                $_SESSION['passwordV'] = $password;
+	            
+	                echo "UserName: " . $_SESSION['userNameV'];
+	                echo "<br>";
+	                echo "Password is: " . $_SESSION['passwordV'];
+	            }
+	        
+	            else
+	            {
+	                $msg = "Login Denied!!!! Try again...";
+	                echo $msg;
+	            }
+
+
 	        }
 
-	        if(empty($_POST['password'])) {
-	          $passwordErr = "Please fill up the password properly";
-	        }
-	        else {
-	          $password = $_POST['password'];
-	        }
-	      }
+	        session_unset();
+		    session_destroy();
+		    fclose($file);
+
+
 
 	    ?>
 
@@ -55,7 +109,7 @@
 			<br>
 
 			<input type="submit" value="Login">
-			<a href="http://localhost/project/admin/adminManagement.php" title="">Not yet registered?</a>
+			<a href="registration.php" title="">Not yet registered?</a>
 
 	    </form>
 

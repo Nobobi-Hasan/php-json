@@ -1,1 +1,1 @@
-{"firstName":"Nobobi","lastName":"Shatin","gender":"male","email":"shatin.hasan73@gmail.com","password":"1234","rEmail":"asgf@gmail.com"}
+{"firstName":"f","lastName":"l","gender":"male","email":"nobobisshatin@gmail.com","userName":"un","password":"1234","rEmail":"asasdgsgf@gmail.com"}
