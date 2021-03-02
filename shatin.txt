@@ -1,0 +1,1 @@
+{"firstName":"Nobobi","lastName":"Shatin","gender":"male","email":"shatin.hasan73@gmail.com","password":"1234","rEmail":"asgf@gmail.com"}
