@@ -22,7 +22,7 @@ session_start();
 			$flag = 0;
 
 			$filepath = "shatin.txt";
-			$file = fopen($filepath,'r') 
+			$file = fopen($filepath,'r')
 			or die("unable to open file");
 
 			if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -42,10 +42,10 @@ session_start();
 				  $password = $_POST['password'];
 				}
 
-				while($line = fgets($file)) 
+				while($line = fgets($file))
 				{
 
-	                //list($firstName,$lastName,$gender,$email,$userNameV,$passwordV,$recoveryEmail) = explode( ",", $line );
+
 	                $json_decoded_text = json_decode($line, true);
 
 	                $userNameV= $json_decoded_text['userName'];
@@ -70,6 +70,8 @@ session_start();
 	                echo "UserName: " . $_SESSION['userNameV'];
 	                echo "<br>";
 	                echo "Password is: " . $_SESSION['passwordV'];
+	                echo "<br>";
+	                echo "***Printed using SESSION***";
 	            }
 	        
 	            else
@@ -78,20 +80,17 @@ session_start();
 	                echo $msg;
 	            }
 
-
 	        }
 
 	        session_unset();
 		    session_destroy();
 		    fclose($file);
 
-
-
 	    ?>
 
 	    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
 	    	
-			<fieldset>
+			<fieldset style="width: 30%; margin: auto ;">
 	        <legend>Login </legend>
 
 	        <label for="uname">UserName:</label>
@@ -112,9 +111,6 @@ session_start();
 			<a href="registration.php" title="">Not yet registered?</a>
 
 	    </form>
-
-	      <p style="color:red"><?php echo $userName; ?></p>
-	      <p style="color:red"><?php echo $password; ?></p>
 
       </center>
     </body>

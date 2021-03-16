@@ -151,7 +151,8 @@
 			{
 		
 				$arr1 = array('firstName' => $firstName, 'lastName' => $lastName, 'gender' => $gender, 'email' => $email, 'userName' => $userName, 'password' =>  $password, 'rEmail' => $rEmail);
-	    		$json_encoded_text =  json_encode($arr1); 
+
+	    		$json_encoded_text = json_encode($arr1); 
 
 	    		$file1 = fopen("shatin.txt", "w");
 			    fwrite($file1, $json_encoded_text);
@@ -183,6 +184,13 @@
 			
 			?>
 		</center>
+
+		<style>
+			fieldset{
+				width: 35%;
+				margin: auto;
+			}
+		</style>
 
     </body>
 </html>
